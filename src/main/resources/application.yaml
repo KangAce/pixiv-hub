@@ -1,0 +1,77 @@
+
+server:
+  port: 8080
+
+tribe:
+  cache: level
+  cache-redis-nodes:
+    - 101.200.56.109:6379
+  cache-redis-password: kang3465
+  cookie: 63063042_sqJR3Nrxjb8HKLCjlvq5KSM4MyKXuNso
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    hikari:
+      connection-test-query: SELECT 1 FROM DUAL
+      maximumPoolSize: 10
+      minimumIdle: 2
+      idleTimeout: 600000
+      connectionTimeout: 30000
+      maxLifetime: 1800000
+    # H2 database configuration.
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:~/.pixiv/db/pixiv
+    #    url: jdbc:h2:mem:testdb
+    #    url: jdbc:h2:tcp://www.imore.fun:9090/file:~/.tribe/db/tribe
+    username: admin
+    password: 123456
+  h2:
+    console:
+      settings:
+        web-allow-others: true
+        web-admin-password: "true.v587"
+      path: /h2-console
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+  redis:
+    # Redis数据库索引（默认为0）
+    database: 0
+    # Redis服务器地址
+    host: 101.200.56.109
+    # Redis服务器连接端口
+    port: 6379
+    password: kang3465
+    # 连接超时时间（毫秒）
+    timeout: 5000
+    jedis:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池中的最小空闲连接
+        min-idle: 0
+logging:
+  config: classpath:logback.xml
+  level:
+    ink: debug
+  file:
+    path: /home/developer/app/logs/
+
+wx:
+  miniapp:
+    configs:
+      - appid: wx21474f3df0f111f0
+        secret: 5b082195079308ba5417c20c9b3df88a
+        token: pds-g^KU_84TfuYXj^2BhyEKa0s
+        aesKey: OkEIKP8zq1oboL5zZ1TWmkizfjcqfm4qEg1vwOYkrsM
+        msgDataFormat: JSON
